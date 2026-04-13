@@ -3,31 +3,9 @@ import type { Movie } from '../types/movie'
 
 export interface TmdbSearchResponse {
   page: number
-  results: TmdbMovieResult[]
+  results: Movie[]
   total_pages: number
   total_results: number
-}
-
-interface TmdbMovieResult {
-  id: number
-  poster_path: string | null
-  backdrop_path: string | null
-  title: string
-  overview: string
-  release_date: string
-  vote_average: number
-}
-
-function normalizeMovie(raw: TmdbMovieResult): Movie {
-  return {
-    id: raw.id,
-    poster_path: raw.poster_path ?? '',
-    backdrop_path: raw.backdrop_path ?? '',
-    title: raw.title,
-    overview: raw.overview,
-    release_date: raw.release_date,
-    vote_average: raw.vote_average,
-  }
 }
 
 export async function fetchMovies(query: string): Promise<Movie[]> {
@@ -45,5 +23,5 @@ export async function fetchMovies(query: string): Promise<Movie[]> {
         },
       },
     )
-  return response.data.results.map(normalizeMovie)
+  return response.data.results
 }
