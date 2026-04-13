@@ -1,0 +1,13 @@
+@import 'modern-normalize/modern-normalize.css';
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+body.modalOpen {
+  overflow: hidden;
+}
